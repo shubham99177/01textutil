@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+
+  const [count, setcount] = useState(0)
+  const [check, setcheck] = useState(2)
+  useEffect(() => {
+    if (count >= 1) {
+      document.title = `chat(${count})`
+
+    } else {
+      document.title = `chat`
+    }
+    console.log("inside");
+  }, [count])
+
+  useEffect(() => {
+    console.log("shubham rathore , outside");
+  },[check])
+
+  // const [wirthcount, setwirthcount] = useState(window.screen.width)
+  // useEffect(() => {
+
+  //   window.addEventListener('resize', () => {
+  //     setwirthcount(window.screen.width)
+  //   })
+  //   return () => {
+  //     window.removeEventListener('resize', () => {
+  //       setwirthcount(window.screen.width)
+  //     })
+  //   }
+  // },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>{count}, {check}</h1>
+      <button onClick={() => { setcount(count + 1) }}>click</button>
+      <button onClick={() => { setcheck(check + 1) }}>click</button>
+      {/* <p>this is the screen wirth</p>
+      <h1>{wirthcount}</h1> */}
+    </>
   );
 }
 
